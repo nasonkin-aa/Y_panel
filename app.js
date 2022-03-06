@@ -6,7 +6,7 @@ const connectedClients = [];
 
 server.listen({
     host: 'localhost',
-    port: 8000,
+    port: 9090,
 });
 
 server.on('connection', (client) => {

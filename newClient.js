@@ -28,7 +28,7 @@ app.post('/api/projector', express.json(), (req, res) => {
     if (activeTech.hasOwnProperty(req.body.id)) {
         projector = activeTech[req.body.id];
     } else {
-        projector = new Projector(req.body.ip, 8000);
+        projector = new Projector(req.body.ip, 9090);
         activeTech[req.body.id] = projector;
     }
 
@@ -46,6 +46,6 @@ app.post('/api/projector', express.json(), (req, res) => {
 
 })
 
-app.listen('8888', () => {
+app.listen('9090', () => {
     console.log('pognali nahui');
 })

@@ -1,4 +1,4 @@
 export default {
-    POWERON: 'poweron',
-    POWEROFF: 'poweroff',
+    POWERON: 'system.poweron',
+    POWEROFF: 'system.poweroff',
 }
