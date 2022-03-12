@@ -1,0 +1,12 @@
+import { Equipment } from "../types/index.js";
+import TCPConnector from "./TCPConnector.js"
+
+export default class Cube extends TCPConnector implements Equipment {
+    on() {
+        return null;
+    }
+
+    off() {
+        return null;
+    }
+}
