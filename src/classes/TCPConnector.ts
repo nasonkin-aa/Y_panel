@@ -1,22 +1,23 @@
 import net from 'net';
 
 export default class TCPConnector {
-    instance = new net.Socket();
-    ip = '';
-    port = 0;
+  instance = new net.Socket();
 
-    constructor(ip: string, port: number) {
-        this.ip = ip;
-        this.port = port;
+  ip = '';
 
-        this.connect();
-    }
+  port = 0;
 
-    connect() {
-        console.log('conected', this.ip, this.port);
-        // this.instance.connect(this.port, this.ip, () => {
-        //     console.log("Client: Connected to server");
-        // });
+  constructor(ip: string, port: number) {
+    this.ip = ip;
+    this.port = port;
 
-    }
+    this.connect();
+  }
+
+  connect() {
+    this.instance.connect(this.port, this.ip, () => {
+        console.log("Client: Connected to server");
+    });
+
+}
 }

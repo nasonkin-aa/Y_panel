@@ -1,11 +1,11 @@
-import { Router } from "express";
-import Projector from "../../classes/Projector.js";
+import { Router } from 'express';
+import projectorHadler from '../../handlers/ProjectorHadler';
 
 const router = Router();
 
-router.get('/on', (req, res) => {
-    new Projector('1', 32).on();
-    res.send('Включили');
-})
+// обраюотчик проекторов
+router.post('/', (req, res) => {
+    projectorHadler(req.body);
+});
 
 export default router;
