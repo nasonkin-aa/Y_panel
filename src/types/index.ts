@@ -4,11 +4,16 @@ export interface TEquipment {
   ip: string,
   port: number,
   name: string,
-	type: number,
+	type: EqTypes,
 }
 export interface IEquipment extends TEquipment {
   on(): void,
   off(): void,
+}
+
+export enum EqTypes {
+  Projector,
+  Cube
 }
 
 // Тип для команд 

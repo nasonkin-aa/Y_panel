@@ -1,7 +1,7 @@
 import { IEquipment } from '../types';
 
 // синглтон оборудования (всегда будет дрежать массив уже включеных штук в turnedOnEq)
-// TODO: сделать метод удаления оборудования из списка при выключении
+
 
 export default class EquipmentHandler {
   private static instance: EquipmentHandler;
@@ -28,5 +28,11 @@ export default class EquipmentHandler {
   public setEquipment(eq: IEquipment) {
     this.turnedOnEq.push(eq);
     console.log(this.turnedOnEq);
+  }
+// Удаление выключенного оборудования 
+  public delEquipment(id: number) {
+    const index = this.turnedOnEq.findIndex((e) => e.id === id)
+    this.turnedOnEq.slice(index, 1);
+
   }
 }

@@ -1,6 +1,6 @@
 import bodyParser from 'body-parser';
 import express from 'express';
-import projector from './projector/index';
+import getEq from './getEq';
 
 const router = express.Router();
 const jsonParser = bodyParser.json();
@@ -9,6 +9,7 @@ const jsonParser = bodyParser.json();
 // если получет запрос на api/projector, то кидает в обработчик проектора
 // в теории можно сделать лакончинее
 
-router.use('/api/projector', jsonParser, projector);
+router.use('/getEq', getEq);
+router.use('/api/command', )
 
 export default router;
