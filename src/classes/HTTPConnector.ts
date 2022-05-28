@@ -5,7 +5,6 @@ export default class HTTPConnector {
   instance = axios;
 
   ip = '';
-
   port = 0;
 
   constructor(ip: string, port: number) {
