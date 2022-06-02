@@ -10,10 +10,12 @@ export default class Cube extends TCPConnector implements IEquipment {
 
   on() {
     console.log('on cube');
+    return this.instance.write('SET(0;Power;1)'); 
   }
 
   off() {
     console.log('off cube');
+    return this.instance.write('SET(0;Power;0)'); 
   }
 
   constructor(eq: TEquipment) {

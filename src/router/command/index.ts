@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { EqTypes, IEquipment, TEquipment } from '../../types';
-import Projector from '../../classes/Projector';
+import Projector from '../../classes/BarcoProjector';
 import Cube from '../../classes/Cube';
 import { getEq } from '../../db';
 

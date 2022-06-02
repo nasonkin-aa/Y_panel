@@ -1,4 +1,4 @@
-import Projector from '../classes/Projector';
+import Projector from '../classes/BarcoProjector';
 import { getEq } from '../db';
 import { CommandRequest } from '../types';
 import EquipmentHandler from './EquipmentHandler';

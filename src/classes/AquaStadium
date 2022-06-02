@@ -1,7 +1,7 @@
 import { IEquipment, TEquipment } from '../types/index';
 import HTTPConnector from './HTTPConnector';
 
-export default class HallScreen extends HTTPConnector implements IEquipment {
+export default class AquaStadium extends HTTPConnector implements IEquipment {
   name: string;
 
   id: number;
@@ -9,7 +9,7 @@ export default class HallScreen extends HTTPConnector implements IEquipment {
   type: number;
 
   on() {
-    console.log('on hall');
+    console.log('on aqua');
     return this.instance.post('/cmd.cgi?cmd=REL,2,1','/cmd.cgi?cmd=REL,1,1')
   }
 
@@ -24,4 +24,3 @@ export default class HallScreen extends HTTPConnector implements IEquipment {
     this.id = eq.id;
     this.type = eq.type;
   }
-}
