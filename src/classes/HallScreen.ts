@@ -10,12 +10,21 @@ export default class HallScreen extends HTTPConnector implements IEquipment {
 
   on() {
     console.log('on hall');
-    return this.instance.post('/cmd.cgi?cmd=REL,2,1','/cmd.cgi?cmd=REL,1,1')
+    this.onRGB();
+    return this.instance.post('/cmd.cgi?cmd=REL,1,1')
+  }
+
+  onRGB(){
+    this.instance.post('/cmd.cgi?cmd=REL,2,1')
   }
 
   off() {
     console.log('off hall');
-    return this.instance.post('/cmd.cgi?cmd=REL,2,0','/cmd.cgi?cmd=REL,1,0')
+    this.offRGB();
+    return this.instance.post('/cmd.cgi?cmd=REL,1,0')
+  }
+  offRGB(){
+    this.instance.post('/cmd.cgi?cmd=REL,2,0')
   }
 
   constructor(eq: TEquipment) {

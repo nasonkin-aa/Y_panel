@@ -12,7 +12,7 @@ export default class HTTPConnector {
     this.port = port;
 
     this.instance.create({
-      baseURL: `http://${ip}:${port}`
+      baseURL: port ? `http://${ip}:${port}` : `http://${ip}`
     });
   }
 

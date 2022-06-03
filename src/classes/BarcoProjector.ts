@@ -7,6 +7,8 @@ export default class BarcoProjector extends TCPConnector implements IEquipment {
   id: number;
 
   type: number;
+  
+  numberExpo: string;
 
   on() {
     return this.instance.write("{\"jsonrpc\": \"2.0\",\"method\": \"system.poweron\",\"params\": {\"property\": \"system.state\"},\"id\": id}"); 
@@ -21,5 +23,6 @@ export default class BarcoProjector extends TCPConnector implements IEquipment {
     this.name = eq.name;
     this.id = eq.id;
     this.type = eq.type;
+    this.numberExpo = eq.numberExpo;
   }
 }
