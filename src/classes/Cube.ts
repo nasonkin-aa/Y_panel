@@ -8,6 +8,8 @@ export default class Cube extends TCPConnector implements IEquipment {
 
   type: number;
 
+  numberExpo: string;
+
   on() {
     console.log('on cube');
     return this.instance.write('SET(0;Power;1)'); 
@@ -23,5 +25,6 @@ export default class Cube extends TCPConnector implements IEquipment {
     this.name = eq.name;
     this.id = eq.id;
     this.type = eq.type;
+    this.numberExpo = eq.numberExpo;
   }
 }

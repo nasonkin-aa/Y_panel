@@ -8,6 +8,8 @@ export default class ContinentalDrift extends HTTPConnector implements IEquipmen
 
   type: number;
 
+  numberExpo: string;
+
   on() {
     console.log('on hall');
     return this.instance.post('/setMainCtrl.cgi?Type=9&SubType=274&Value=1')
@@ -23,5 +25,6 @@ export default class ContinentalDrift extends HTTPConnector implements IEquipmen
     this.name = eq.name;
     this.id = eq.id;
     this.type = eq.type;
+    this.numberExpo = eq.numberExpo;
   }
 }

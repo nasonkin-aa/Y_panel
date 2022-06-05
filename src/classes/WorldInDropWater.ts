@@ -1,7 +1,7 @@
 import { IEquipment, TEquipment } from '../types/index';
 import HTTPConnector from './HTTPConnector';
 
-export default class AquaStadium extends HTTPConnector implements IEquipment {
+export default class WorldInDropWater extends HTTPConnector implements IEquipment {
   name: string;
 
   id: number;

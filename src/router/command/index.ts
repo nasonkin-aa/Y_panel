@@ -7,7 +7,7 @@ import { getEq } from '../../db';
 const router = Router();
 
 const EqClass: { [key in EqTypes]: new (eq: TEquipment) => IEquipment} = {
-    [EqTypes.Projector]: Projector,
+    [EqTypes.BarcoProjector]: Projector,
     [EqTypes.Cube]: Cube,
 }
 

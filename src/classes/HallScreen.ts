@@ -8,6 +8,8 @@ export default class HallScreen extends HTTPConnector implements IEquipment {
 
   type: number;
 
+  numberExpo: string;
+
   on() {
     console.log('on hall');
     this.onRGB();
@@ -32,5 +34,6 @@ export default class HallScreen extends HTTPConnector implements IEquipment {
     this.name = eq.name;
     this.id = eq.id;
     this.type = eq.type;
+    this.numberExpo = eq.numberExpo;
   }
 }
