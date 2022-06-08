@@ -1,11 +1,12 @@
 import { Router } from 'express';
-import { getAll } from '../db';
+import { db } from '../db';
+import { TEquipment } from '../types';
 
 const router = Router();
 
 // обраюотчик проекторов
-router.get('/', (req, res) => {
-    const eqs = getAll();
+router.get('/', async (req, res) => {
+    const eqs = await db?.all<TEquipment[]>('SELECT * FROM expositions');
 
     res.send({ eqs });
 });

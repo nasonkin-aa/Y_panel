@@ -8,7 +8,7 @@ export default class ContinentalDrift extends HTTPConnector implements IEquipmen
 
   type: number;
 
-  numberExpo: string;
+  number: string;
 
   on() {
     console.log('on hall');
@@ -25,6 +25,6 @@ export default class ContinentalDrift extends HTTPConnector implements IEquipmen
     this.name = eq.name;
     this.id = eq.id;
     this.type = eq.type;
-    this.numberExpo = eq.numberExpo;
+    this.number = eq.number;
   }
 }

@@ -4,7 +4,7 @@ export interface TEquipment {
   ip: string,
   port: number,
   name: string,
-  numberExpo: string,
+  number: string,
 	type: EqTypes,
 }
 export interface IEquipment extends TEquipment {
@@ -14,12 +14,12 @@ export interface IEquipment extends TEquipment {
 
 export enum EqTypes {
   BarcoProjector = 1,
-  Cube,
-  AquaStadium,
-  ContinentalDrift,
-  HallScreen,
-  InteractiveFloor,
-  WorldInDropWater
+  Cube = 2,
+  AquaStadium = 3,
+  ContinentalDrift = 4,
+  HallScreen = 5,
+  InteractiveFloor = 6,
+  WorldInDropWater = 7
 }
 
 // Тип для команд 

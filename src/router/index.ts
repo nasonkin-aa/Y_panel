@@ -10,6 +10,6 @@ const jsonParser = bodyParser.json();
 // в теории можно сделать лакончинее
 
 router.use('/getEq', getEq);
-router.use('/api/command', )
+//router.use('/api/command', )
 
 export default router;

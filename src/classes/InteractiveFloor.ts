@@ -8,7 +8,7 @@ export default class InteractiveFloor extends HTTPConnector implements IEquipmen
 
   type: number;
 
-  numberExpo: string;
+  number: string;
   on() {
     console.log('on floor');
     return this.instance.post('/cgi-bin/webctrl.cgi.elf?&t:26,c:5,p:7,v:1')
@@ -24,6 +24,6 @@ export default class InteractiveFloor extends HTTPConnector implements IEquipmen
     this.name = eq.name;
     this.id = eq.id;
     this.type = eq.type;
-    this.numberExpo = eq.numberExpo;
+    this.number = eq.number;
   }
 }

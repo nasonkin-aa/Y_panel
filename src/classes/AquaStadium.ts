@@ -8,7 +8,7 @@ export default class AquaStadium extends HTTPConnector implements IEquipment {
 
   type: number;
 
-  numberExpo: string;
+  number: string;
 
   on() {
     console.log('on aqua');
@@ -25,6 +25,6 @@ export default class AquaStadium extends HTTPConnector implements IEquipment {
     this.name = eq.name;
     this.id = eq.id;
     this.type = eq.type;
-    this.numberExpo =eq.numberExpo;
+    this.number =eq.number;
   }
 }

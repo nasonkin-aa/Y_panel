@@ -1,6 +1,6 @@
 import Projector from '../classes/BarcoProjector';
-import { getEq } from '../db';
-import { CommandRequest } from '../types';
+import { db } from '../db';
+import { CommandRequest, TEquipment } from '../types';
 import EquipmentHandler from './EquipmentHandler';
 
 // Обработчик проекторов
@@ -8,11 +8,13 @@ import EquipmentHandler from './EquipmentHandler';
 // TODO настроить обработчик разных команд
 
 
-export default (req: CommandRequest) => {
+export default async (req: CommandRequest) => {
   let eq = EquipmentHandler.getInstance().getEquipment(req.id);
 
   if (!eq) {
-    const eqData = getEq(req.id)!;
+    const eqData = await db?.get<TEquipment>('SELECT * FROM expositions WHERE id=?', req.id);
+    if (!eqData) return;
+
     eq = new Projector(eqData);
     EquipmentHandler.getInstance().setEquipment(eq);
   }
