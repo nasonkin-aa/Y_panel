@@ -9,7 +9,7 @@ const jsonParser = bodyParser.json();
 // если получет запрос на api/projector, то кидает в обработчик проектора
 // в теории можно сделать лакончинее
 
-router.use('/getEq', getEq);
+router.use('/api/getEq', getEq);
 //router.use('/api/command', )
 
 export default router;

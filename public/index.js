@@ -1,51 +1,48 @@
-const onBtn = document.querySelector('#on-btn');
-const offBtn = document.querySelector('#off-btn');
+const listEl = document.querySelector('.eqs__list');
 
-// onBtn.addEventListener('click', () => {
-//     fetch('/api/projector', {
-//         method: 'POST',
-//         body: {
-//             method: 'on',
-//             ip: 'localhost',
-//         }
-//     })
-//     .then((res) => console.log(res))
-//     .catch((err) => console.log(err));
-// })
-// offBtn.addEventListener('click', () => {
-//     fetch('/api/projector', {
-//         method: 'POST',
-//         body: {
-//             method: 'off',
-//             ip: 'localhost',
-//         }
-//     })
-//     .then((res) => console.log(res))
-//     .catch((err) => console.log(err));
-// })
+const getEqs = async () => {
+    try {
+        const response = await axios.get('/api/getEq');
 
-const onProjector = (id) => {
-    fetch('/api/projector', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            command: 'on',
-            id,
-        })
-    })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+        if (!response) return;
+
+        const { data: { eqs } } = response;
+
+        const groupedEqs = groupByNumber(eqs);
+
+        for (const num in groupedEqs) {
+            addRow(groupedEqs[num]);
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }
 
-const offProjector = (id) => {
-    fetch('/api/projector', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-            command: 'off',
-            id,
-        })
-    })
-    .then((res) => console.log(res))
-    .catch((err) => console.log(err));
+const addRow = (group) => {
+    if (group.length == 1) {
+        const row = listEl.appendChild(document.createElement('div'));
+        row.innerHTML = group[0].number;
+    } else {
+        const row = listEl.appendChild(document.createElement('details'));
+        const summary = row.appendChild(document.createElement('summary'));
+        summary.innerHTML = group[0].number;
+
+        group.forEach(el => {
+            const subItem = row.appendChild(document.createElement('div'));
+            subItem.innerHTML = el.name;
+        });
+    }
+}
+
+const groupByNumber = (arr) => {
+    return arr.reduce((prev, curr) => {
+        const num = curr.number.trim();
+        (prev[num] = prev[num] || []).push(curr);
+
+        return prev;
+    }, {})
+}
+
+window.onload = () => {
+    getEqs()
 }
