@@ -24,7 +24,7 @@ const EqClass: { [key in EqTypes]: new (eq: TEquipment) => IEquipment} = {
 
 router.get('/', async (req, res) => {
     const { body: { eqId }} = req;
-
+    console.log('hui --- ', req, res);
     const eq = await db?.get<TEquipment>('SELECT * FROM expositions WHERE id=?', eqId);;
 
     if (!eq) return;

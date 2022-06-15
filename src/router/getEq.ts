@@ -4,7 +4,7 @@ import { TEquipment } from '../types';
 
 const router = Router();
 
-// обраюотчик проекторов
+// обработчик проекторов
 router.get('/', async (req, res) => {
     const eqs = await db?.all<TEquipment[]>('SELECT * FROM expositions');
 
