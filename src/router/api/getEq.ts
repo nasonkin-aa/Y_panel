@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { db } from '../db';
-import { TEquipment } from '../types';
+import { db } from '../../db';
+import { TEquipment } from '../../types';
 
 const router = Router();
 

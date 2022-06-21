@@ -1,5 +1,5 @@
-const list = document.querySelector('.eqs__list');
 
+//получение списка
 const getEqs = async () => {
     try {
         const response = await axios.get('/api/getEq');
@@ -9,14 +9,16 @@ const getEqs = async () => {
         const { data: { eqs } } = response;
 
         const groupedEqs = groupByNumber(eqs);
+        const list = document.querySelector('.eqs__list');
+
         for (const num in groupedEqs) { 
-            addRow(groupedEqs[num]);
+            addRow(groupedEqs[num], list);
         }
     } catch (error) {
         console.error(error);
     }
 }
-
+ //группировка по номеру 
 const groupByNumber = (arr) => {
     return arr.reduce((prev, curr) => {
         const num = curr.number.trim();
@@ -26,9 +28,9 @@ const groupByNumber = (arr) => {
     }, {})
 }
 
-const addRow = (group) => {
+const addRow = (group, parent) => {
     if (group.length == 1) {
-        let row = list.appendChild(document.createElement('div'));
+        let row = parent.appendChild(document.createElement('div'));
         row.classList.add('table__row');
 
         row.appendChild(document.createElement('div')).innerHTML =  group[0].number;
@@ -37,10 +39,13 @@ const addRow = (group) => {
 
         let btn = row.appendChild(document.createElement('button'));
         btn.innerHTML = group[0].number;
-        btn.classList.add('btn__green');
-        btn.addEventListener('click', () => changeStatus(btn, group));
+        btn.classList.add('btn__power');
+        btn.active = group[0].active;
+        if (group[0].active) btn.classList.add('active');
+
+        btn.addEventListener('click', () => changeCondition(group[0].id, btn));
     } else {
-        let details = list.appendChild(document.createElement('details'));
+        let details = parent.appendChild(document.createElement('details'));
         details.classList.add('details')
 
         let summary = details.appendChild(document.createElement('summary'));
@@ -52,20 +57,21 @@ const addRow = (group) => {
         detailsContent.classList.add('details__content');
 
         group.forEach(el => {
-            addRow([el]);
+            addRow([el], detailsContent);
         });
     }
 }
 
-const changeStatus = async (btn, group) => {
+const changeCondition = async (id, btn) => {
+    try {
+        const response = await axios.post('/api/command', { id, command: btn.active ? 'off' : 'on'});
 
-    console.log('click', group);
-    if (btn.classList.value === "btn__green") {
-        btn.classList.remove('btn__green')
-        btn.classList.add('btn__red')
-    } else {
-        btn.classList.remove('btn__red')
-        btn.classList.add('btn__green')
+        console.log(response);
+
+        btn.classList.toggle('active');
+        btn.active = !btn.active;
+    } catch (error) {
+        console.error(error);
     }
 }
 

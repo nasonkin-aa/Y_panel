@@ -1,28 +1,13 @@
+import EquipmnetInstance from '../handlers/EquipmnetInstance';
 import { IEquipment, TEquipment } from '../types/index';
 import TCPConnector from './TCPConnector';
 
 export default class BarcoProjector extends TCPConnector implements IEquipment {
-  name: string;
-
-  id: number;
-
-  type: number;
-  
-  number: string;
-
   on() {
-    return this.instance.write("{\"jsonrpc\": \"2.0\",\"method\": \"system.poweron\",\"params\": {\"property\": \"system.state\"},\"id\": id}"); 
+    return super.powerOn("{\"jsonrpc\": \"2.0\",\"method\": \"system.poweron\",\"params\": {\"property\": \"system.state\"},\"id\": 3}");
   }
 
   off() {
-    return this.instance.write("{ \"jsonrpc\": \"2.0\", \"method\": \"system.poweroff\", \"params\": { \"property\": \"system.state\" }, \"id\": 4 }"); 
-  }
-
-  constructor(eq: TEquipment) {
-    super(eq.ip, eq.port);
-    this.name = eq.name;
-    this.id = eq.id;
-    this.type = eq.type;
-    this.number = eq.number;
+    return super.powerOff("{ \"jsonrpc\": \"2.0\", \"method\": \"system.poweroff\", \"params\": { \"property\": \"system.state\" }, \"id\": 4 }");
   }
 }

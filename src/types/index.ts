@@ -6,10 +6,11 @@ export interface TEquipment {
   name: string,
   number: string,
 	type: EqTypes,
+  active?: boolean,
 }
-export interface IEquipment extends TEquipment {
-  on(): void,
-  off(): void,
+export interface IEquipment {
+  on(): Promise<boolean>,
+  off(): Promise<boolean>,
 }
 
 export enum EqTypes {

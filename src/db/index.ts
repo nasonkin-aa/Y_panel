@@ -13,11 +13,8 @@ const openDB = async () => {
   });
 }
 
-
 const Eq : TEquipment[] = [
-
 ];
-
 // eslint-disable-next-line import/prefer-default-export
 export {
   openDB,

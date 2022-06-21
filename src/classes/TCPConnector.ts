@@ -1,23 +1,61 @@
 import net from 'net';
+import EquipmnetInstance from '../handlers/EquipmnetInstance';
+import { EqTypes, TEquipment } from '../types';
 
 export default class TCPConnector {
   instance = new net.Socket();
 
-  ip = '';
+  ip: string;
 
-  port = 0;
+  port: number;
 
-  constructor(ip: string, port: number) {
-    this.ip = ip;
-    this.port = port;
+  id: number;
 
-    this.connect();
+  name: string;
+
+  number: string;
+
+  type: EqTypes;
+
+  active?: boolean | undefined;
+
+
+  constructor(eq: TEquipment) {
+    this.ip = eq.ip;
+    this.port = eq.port;
+    this.name = eq.name;
+    this.id = eq.id;
+    this.type = eq.type;
+    this.number = eq.number;
+
+    // this.connect();
   }
 
   connect() {
     this.instance.connect(this.port, this.ip, () => {
         console.log("Client: Connected to server");
     });
+  }
 
-}
+  powerOn(request: string) {
+    EquipmnetInstance.getInstance().setEquipment(this.id);
+
+    return new Promise<boolean>((resolve, reject) => {
+      // resolve(this.instance.write(request));
+      //! сверху вариант для реал лайф теста
+      //! Ниже для домашнего
+      resolve(true);
+    });
+  }
+
+  powerOff(request: string) {
+    EquipmnetInstance.getInstance().delEquipment(this.id);
+
+    return new Promise<boolean>((resolve, reject) => {
+      // resolve(this.instance.write(request));
+      //! сверху вариант для реал лайф теста
+      //! Ниже для домашнего
+      resolve(true);
+    });
+  }
 }

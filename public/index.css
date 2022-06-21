@@ -37,17 +37,11 @@ body {
     padding-left: 16px;
 }
 
-.btn__red {
-    width: 80%;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 8px;
-    border-radius: 8px;
-    border: 0;
+.btn__power.active {
     color: #fff;
     background: #E57373;
 }
-.btn__green {
+.btn__power {
     width: 80%;
     margin-right: auto;
     margin-left: auto;
@@ -57,10 +51,10 @@ body {
     color: #fff;
     background: #81C784;
 }
-.btn__green:hover{
+.btn__power:hover{
     background: #4CAF50
 }
-.btn__red:hover{
+.btn__power:hover.active{
     background: #F44336
 }
 /* стилизация details общая - начало */

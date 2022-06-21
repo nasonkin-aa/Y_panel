@@ -2,29 +2,13 @@ import { IEquipment, TEquipment } from '../types/index';
 import HTTPConnector from './HTTPConnector';
 
 export default class ContinentalDrift extends HTTPConnector implements IEquipment {
-  name: string;
-
-  id: number;
-
-  type: number;
-
-  number: string;
-
   on() {
     console.log('on hall');
-    return this.instance.post('/setMainCtrl.cgi?Type=9&SubType=274&Value=1')
+    return super.powerOn('/setMainCtrl.cgi?Type=9&SubType=274&Value=1');
   }
 
   off() {
     console.log('off hall');
-    return this.instance.post('/setMainCtrl.cgi?Type=9&SubType=274&Value=0')
-  }
-
-  constructor(eq: TEquipment) {
-    super(eq.ip, eq.port);
-    this.name = eq.name;
-    this.id = eq.id;
-    this.type = eq.type;
-    this.number = eq.number;
+    return super.powerOff('/setMainCtrl.cgi?Type=9&SubType=274&Value=0');
   }
 }

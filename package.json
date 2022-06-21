@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .ts",
-    "start:production": "node --experimental-specifier-resolution=node build/app.js",
+    "start:production": "tsc && node --experimental-specifier-resolution=node build/app.js",
     "build": "tsc",
     "start:dev": "cross-env NODE_OPTIONS='--experimental-specifier-resolution=node' nodemon src/app.ts"
   },
