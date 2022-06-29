@@ -56,5 +56,27 @@ class EquipmentHandler {
             }
         });
     }
+    runCommandAll(req, res) {
+        return __awaiter(this, void 0, void 0, function* () {
+            const body = req.body;
+            const eqsData = yield (db === null || db === void 0 ? void 0 : db.all('SELECT * FROM expositions WHERE id <> 2 AND id <> 1'));
+            console.log(eqsData === null || eqsData === void 0 ? void 0 : eqsData.length);
+            console.log(eqsData === null || eqsData === void 0 ? void 0 : eqsData.map((el) => el.id));
+            const eqs = eqsData === null || eqsData === void 0 ? void 0 : eqsData.map((el) => new EqClass[el.type](el));
+            if (!eqs) {
+                res.statusCode = 418;
+                res.send({ error: "Eqs error" });
+                return null;
+            }
+            try {
+                const turnedResult = yield Promise.allSettled(eqs.map((e) => body.command === 'on' ? e.on() : e.off()));
+                res.send(turnedResult);
+            }
+            catch (_a) {
+                res.statusCode = 418;
+                res.send('error for one of eqs');
+            }
+        });
+    }
 }
 export default new EquipmentHandler();

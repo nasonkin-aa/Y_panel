@@ -27,12 +27,15 @@ export default class EquipmnetInstance {
 
   // Добавить новое оборудование в список включенных
   public setEquipment(id: number) {
+    if (this.getEquipment(id) !== null) return null;
     this.turnedOnEq.push(id);
     console.log(this.turnedOnEq);
   }
 // Удаление выключенного оборудования 
   public delEquipment(id: number) {
     const index = this.turnedOnEq.findIndex((e) => e === id);
+    if (index === -1) return;
+    
     this.turnedOnEq.splice(index, 1);
     console.log(this.turnedOnEq);
   }

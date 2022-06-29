@@ -21,15 +21,16 @@ export default class HTTPConnector {
         this.type = eq.type;
         this.number = eq.number;
         this.instance.create({
-            baseURL: this.port ? `http://${this.ip}:${this.port}` : `http://${this.ip}`
+            baseURL: this.port ? `http://${this.ip}:${this.port}` : `http://${this.ip}`, timeout: 1000,
         });
     }
     powerOn(request) {
         return __awaiter(this, void 0, void 0, function* () {
             EquipmnetInstance.getInstance().setEquipment(this.id);
-            // const res = await this.instance.get(request);
-            // if (res.data) return true;
-            // return false;
+            const res = yield this.instance.get(`http://${this.ip}` + request);
+            if (res.data)
+                return true;
+            return false;
             //! сверху вариант для реал лайф теста
             //! Ниже для домашнего
             return new Promise((resolve, reject) => {
@@ -41,7 +42,7 @@ export default class HTTPConnector {
     powerOff(request) {
         return __awaiter(this, void 0, void 0, function* () {
             EquipmnetInstance.getInstance().delEquipment(this.id);
-            // const res = await this.instance.get(request);
+            const res = yield this.instance.get(`http://${this.ip}` + request);
             // if (res.data) return true;
             // return false;
             //! сверху вариант для реал лайф теста

@@ -54,6 +54,29 @@ class EquipmentHandler {
           res.send({error: "Command not found"});
         }
     }
+
+    async runCommandAll(req: Request, res: Response) {
+      const body: CommandRequest = req.body;
+      const eqsData = await db?.all<TEquipment[]>('SELECT * FROM expositions WHERE id <> 2 AND id <> 1');
+      console.log(eqsData?.length);
+      console.log(eqsData?.map((el) => el.id));
+      const eqs = eqsData?.map((el) => new EqClass[el.type](el));
+
+      if (!eqs) {
+        res.statusCode = 418;
+        res.send({error: "Eqs error"});
+
+        return null;
+      }
+
+      try {
+        const turnedResult = await Promise.allSettled(eqs.map((e) => body.command === 'on' ? e.on() : e.off()));
+        res.send(turnedResult);
+      } catch {
+        res.statusCode = 418;
+        res.send('error for one of eqs');
+      }
+    }
 }
 
 export default new EquipmentHandler();

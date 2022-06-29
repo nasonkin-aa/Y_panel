@@ -9,7 +9,7 @@ export default class TCPConnector {
         this.id = eq.id;
         this.type = eq.type;
         this.number = eq.number;
-        // this.connect();
+        //this.connect();
     }
     connect() {
         this.instance.connect(this.port, this.ip, () => {

@@ -1,4 +1,6 @@
 
+let btns = {};
+
 //получение списка
 const getEqs = async () => {
     try {
@@ -41,9 +43,11 @@ const addRow = (group, parent) => {
         btn.innerHTML = group[0].number;
         btn.classList.add('btn__power');
         btn.active = group[0].active;
-        if (group[0].active) btn.classList.add('active');
+        if (btn.active) btn.classList.add('active');
+        
+        btn.addEventListener('click', () => changeCondition(group[0].id));
 
-        btn.addEventListener('click', () => changeCondition(group[0].id, btn));
+        btns[group[0].id] = btn;
     } else {
         let details = parent.appendChild(document.createElement('details'));
         details.classList.add('details')
@@ -62,7 +66,9 @@ const addRow = (group, parent) => {
     }
 }
 
-const changeCondition = async (id, btn) => {
+
+const changeCondition = async (id) => {
+    const btn = btns[id];
     try {
         const response = await axios.post('/api/command', { id, command: btn.active ? 'off' : 'on'});
 
@@ -70,6 +76,30 @@ const changeCondition = async (id, btn) => {
 
         btn.classList.toggle('active');
         btn.active = !btn.active;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+const runCommandAll = async (command) => {
+    try {
+        const response = await axios.post('/api/commandAll', { command });
+
+        if (!response.data) return;
+
+        response.data.forEach((el, idx) => {
+            if (el.value) {
+                const isOn = command == 'on';
+                btns[idx + 3].active = isOn;
+                
+
+                if (isOn) {
+                    btns[idx + 3].classList.add('active');
+                } else {
+                    btns[idx + 3].classList.remove('active');
+                }
+            }
+        });
     } catch (error) {
         console.error(error);
     }

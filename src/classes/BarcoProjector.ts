@@ -8,6 +8,6 @@ export default class BarcoProjector extends TCPConnector implements IEquipment {
   }
 
   off() {
-    return super.powerOff("{ \"jsonrpc\": \"2.0\", \"method\": \"system.poweroff\", \"params\": { \"property\": \"system.state\" }, \"id\": 4 }");
+    return super.powerOff('{"jsonrpc": "2.0", "method": "system.poweroff"}');
   }
 }

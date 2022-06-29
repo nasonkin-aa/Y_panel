@@ -19,12 +19,16 @@ export default class EquipmnetInstance {
     }
     // Добавить новое оборудование в список включенных
     setEquipment(id) {
+        if (this.getEquipment(id) !== null)
+            return null;
         this.turnedOnEq.push(id);
         console.log(this.turnedOnEq);
     }
     // Удаление выключенного оборудования 
     delEquipment(id) {
         const index = this.turnedOnEq.findIndex((e) => e === id);
+        if (index === -1)
+            return;
         this.turnedOnEq.splice(index, 1);
         console.log(this.turnedOnEq);
     }

@@ -24,7 +24,7 @@ body {
     background-color: var(--color-primary-light);
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    height: 40px;
+    min-height: 40px;
     align-items: center;
     padding: 8px;
 }
@@ -39,7 +39,7 @@ body {
 
 .btn__power.active {
     color: #fff;
-    background: #E57373;
+    background: #3030ff;
 }
 .btn__power {
     width: 80%;
@@ -56,6 +56,21 @@ body {
 }
 .btn__power:hover.active{
     background: #F44336
+}
+.btn__container{
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+.btn__powerAll{
+    background: #3060ff;
+    font-size: 16px;
+    width: 100%;
+}
+.btn__powerAll:hover{
+    background: #3030ff;
 }
 /* стилизация details общая - начало */
 

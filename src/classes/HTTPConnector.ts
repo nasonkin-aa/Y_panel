@@ -5,7 +5,6 @@ import EquipmnetInstance from '../handlers/EquipmnetInstance';
 
 export default class HTTPConnector {
   instance = axios;
-
   ip = '';
   
   port = 0;
@@ -28,31 +27,31 @@ export default class HTTPConnector {
     this.type = eq.type;
     this.number = eq.number;
 
+ 
     this.instance.create({
-      baseURL: this.port ? `http://${this.ip}:${this.port}` : `http://${this.ip}`
+      baseURL: this.port ? `http://${this.ip}:${this.port}` : `http://${this.ip}`,timeout: 1000,
     });
   }
-
   async powerOn(request: string) {
     EquipmnetInstance.getInstance().setEquipment(this.id);
-    // const res = await this.instance.get(request);
+    const res = await this.instance.get(`http://${this.ip}`+request);
 
-    // if (res.data) return true;
-    // return false;
+    if (res.data) return true;
+    return false;
 
 
     //! сверху вариант для реал лайф теста
     //! Ниже для домашнего
     
     return new Promise<boolean>((resolve, reject) => {
-      //! Ниже для домашнего
+       //! Ниже для домашнего
       resolve(true);
     });
   }
 
   async powerOff(request: string) {
     EquipmnetInstance.getInstance().delEquipment(this.id);
-    // const res = await this.instance.get(request);
+    const res = await this.instance.get(`http://${this.ip}`+ request);
 
     // if (res.data) return true;
     // return false;
